@@ -53,8 +53,61 @@ int main(){
         std::cout << "You divide by zero, try other variable" << std::endl;
     }
 
+    __int32 x2(0), rez2(0), flag2(0), two(2);
+    std::cout << "Enter variable for second problem" << std::endl;
+    std::cin >> x2;
+    __asm {
+    mov EAX, x2
+    mov EBX, 0
+    mov ECX, 0
+    mov EDX, 0
 
 
+    mov EAX, x2
+    mul two
+    mov ECX, EAX
+
+
+    cmp ECX, 0
+    jne if_not_zero
+
+    cmp ECX, 0
+    je if_zero
+
+    if_zero :
+        jmp end
+
+    if_not_zero :
+    mov EAX, x2
+    mul two
+    add EAX, 1
+    mov EBX, EAX
+
+    mov EAX, x2
+    mul two
+    sub EAX, 1
+
+    mov EDX, x2
+    add EDX, 3
+
+    mul EDX
+    mul EBX
+    div ECX
+
+    mov rez2, EAX
+    mov flag2, 1
+    jmp end
+
+    end :
+
+    }
+
+    if (flag2) {
+        std::cout << rez2 << std::endl;
+    }
+    else {
+        std::cout << "You divide by zero, try other variable" << std::endl;
+    }
 
     __int32 x3(0),rez3(0);
     std::cout << "Enter variable for third problem" << std::endl;
