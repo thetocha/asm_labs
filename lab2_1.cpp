@@ -11,44 +11,46 @@ int main(){
     mov ECX, 0
     mov EDX, 0
 
-    mul EAX
+    imul EAX
     sub EAX, 4
-    mul EBX
+    imul EBX
     mov EDX, EAX
 
     mov EAX, x1
-    mul x1
-    mul x1
+    imul x1
+    imul x1
     mov ECX, EAX
 
-    mul x1
-    mul x1
+    imul x1
+    imul x1
 
 
     add EAX, EDX
     add EAX, x1
 
     cmp ECX, 0
-    jne if_not_zero
+    jne if_not_zero1
 
     cmp ECX, 0
-    je if_zero
+    je if_zero1
 
-    if_zero:
-        jmp end
+    if_zero1:
+        jmp end1
 
-    if_not_zero:
-        div ECX
+    if_not_zero1:
+        idiv ECX
         mov rez1, EAX
         mov flag1, 1
-        jmp end
+        jmp end1
 
-    end:
+    end1:
 
     }
 
+    int rezC1 = (pow(x1,5) + 2*(pow(x1,2) - 4) + x1) / pow(x1,3);
     if(flag1){
-        std::cout << rez1 << std::endl;
+        std::cout << "Result by asm " << rez1 << std::endl;
+        std::cout << "Resukt by C++ "  << rezC1 << std::endl;
     }else{
         std::cout << "You divide by zero, try other variable" << std::endl;
     }
@@ -64,52 +66,54 @@ int main(){
 
 
     mov EAX, x2
-    mul two
+    imul two
     mov ECX, EAX
 
 
     cmp ECX, 0
-    jne if_not_zero
+    jne if_not_zero2
 
     cmp ECX, 0
-    je if_zero
+    je if_zero2
 
-    if_zero :
-        jmp end
+    if_zero2 :
+        jmp end2
 
-    if_not_zero :
+    if_not_zero2 :
     mov EAX, x2
-    mul two
+    imul two
     add EAX, 1
     mov EBX, EAX
 
     mov EAX, x2
-    mul two
+    imul two
     sub EAX, 1
 
     mov EDX, x2
     add EDX, 3
 
-    mul EDX
-    mul EBX
-    div ECX
+    imul EDX
+    imul EBX
+    idiv ECX
 
     mov rez2, EAX
     mov flag2, 1
-    jmp end
+    jmp end2
 
-    end :
+    end2 :
 
     }
 
+    int rezC2 = ((2*x2 + 1)*(2*x2 - 1)*(x2 + 3))/(2*x2);
     if (flag2) {
-        std::cout << rez2 << std::endl;
+        std::cout << "Result by asm " << rez2 << std::endl;
+        std::cout << "Resukt by C++ "  << rezC2 << std::endl;
     }
     else {
         std::cout << "You divide by zero, try other variable" << std::endl;
     }
 
-    __int32 x3(0),rez3(0);
+    __int32 x3(0),rez3(0), flag3(0);
     std::cout << "Enter variable for third problem" << std::endl;
     std::cin >> x3;
     __asm{
@@ -117,19 +121,23 @@ int main(){
         mov EBX, 0
         mov ECX, 4
 
-        mul ECX
+        imul ECX
         mov EBX, EAX
 
         add EAX, 1
         sub EBX,1
 
-        mul EBX
-        div ECX
+        imul EBX
+        idiv ECX
 
         mov rez3, EAX
     }
 
-    std::cout << rez3 <<  std::endl;
+    int rezC3 = ((4*x3 + 1)*(4*x3 +-1))/4;
+
+    std::cout << "Result by asm " << rez3 << std::endl;
+    std::cout << "Resukt by C++ "  << rezC3 << std::endl;
+
 
 
 
