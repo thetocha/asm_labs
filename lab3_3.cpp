@@ -24,11 +24,13 @@ int main(){
 
         end_fibonacci_loop :
         mov x, EAX
+        dec ESI
         mov counter, ESI
         }
         for (int i = 0; i < counter; ++i) {
             std::cout << fibonacci_numbers[i] << " ";
         }
         std::cout << std::endl;
+        return 0;
         return 0;
 }
