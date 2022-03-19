@@ -10,14 +10,14 @@ int main(){
         mov EDX, 0
         mov fibonacci_numbers[0], 0
         mov fibonacci_numbers[4], 1
-        mov ESI, 2
+        mov ESI, 1
 
         fibonacci_loop:
+        inc ESI
         mov EDX, EAX
         add EAX, EBX
         mov EBX, EDX
         mov fibonacci_numbers[4*ESI], EAX
-        inc ESI
         jc end_fibonacci_loop
         loop fibonacci_loop
 
