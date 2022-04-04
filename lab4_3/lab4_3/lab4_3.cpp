@@ -3,8 +3,8 @@
 
 int main()
 {
-    __int32  iteration(0), one(1), two(2), k(0), x(0), NF(0);
-    double rez(0), y(1), z(2), intermidiate_rez(0), accuracy(0);
+    __int32  iteration(0), one(1), two(2), x(0), NF(0);
+    double rez(0), intermidiate_rez(0), accuracy(0);
     std::cout << "Enter required accuracy" << std::endl;
     std::cin >> x;
     switch (x) {
@@ -20,19 +20,18 @@ int main()
         break;
     }
     __asm {
-        mov ECX, iteration
 
         count :
         finit
         xor EDX, EDX
-            inc k
-            mov EAX, k
+            inc iteration
+            mov EAX, iteration
             mul EAX
             mov EDX, 4
             mul EDX
             xor EDX, EDX
             sub EAX, 1
-            mov EBX, k
+            mov EBX, iteration
             mul EBX
             mov x, EAX
 
@@ -53,19 +52,16 @@ int main()
             fldln2
             fsub
             fabs
-            fstp rez
-            fld rez
             fcom accuracy
             fstsw ax
             sahf 
             jae count
-            mov EAX, k
-            mov iteration, EAX
+
 
 
     }
 
-    std::cout << std::setprecision(8) << iteration << rez << std::endl;
+    std::cout << "It needs " << iteration << " of itertion to get this accuracy" << std::endl;
     return 0;
 }
 

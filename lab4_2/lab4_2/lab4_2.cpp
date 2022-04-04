@@ -4,8 +4,8 @@
 
 int main()
 {
-    __int32  iteration(0), one(1), k(0), x(0), NF(0);
-    double intermediat_rez(0), rez(0), accuracy(0), zx(0);
+    __int32  iteration(0), one(1), x(0), NF(0);
+    double intermediat_rez(0), rez(0), accuracy(0);
     std::cout << "Enter required ouccuracy " << std::endl;
     std::cin >> x;
     switch (x) {
@@ -28,12 +28,12 @@ int main()
     count:
         finit
         xor EDX, EDX
-        inc k
-        mov EAX, k
+        inc iteration
+        mov EAX, iteration
         mul EAX
         push EAX
         xor EDX, EDX
-        mov EAX, k
+        mov EAX, iteration
         mov EBX, 2
         div EBX
         pop x
@@ -62,19 +62,16 @@ int main()
         fldpi
         fsub
         fabs
-        fstp zx
-        fld zx
 
         fcom accuracy
 
         fstsw ax
         sahf
         jnc count
-        mov EAX, k
-        mov iteration, EAX
+
 }
      
-    std::cout << std::setprecision(10) << iteration << std::endl;
+    std::cout << "It needs " << iteration  << " of iteration to get this accuracy " << std::endl;
 
     return 0;
 }
